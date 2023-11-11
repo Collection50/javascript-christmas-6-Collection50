@@ -18,11 +18,20 @@ class MenuValidator extends Validator {
     }
   }
 
+  static validatePurchaseCount(menus) {
+    menus.forEach(({ count }) => {
+      if (super.isNotNaturalNumber(count)) {
+        throw new ValidationError(ERROR.invalidMenu);
+      }
+    });
+  }
+
   static validateMenus(answer) {
     const menus = Parser.splitMenu(answer);
 
     this.validateDuplication(menus);
     this.validateMaxCount(menus);
+    this.validatePurchaseCount(menus);
   }
 }
 
