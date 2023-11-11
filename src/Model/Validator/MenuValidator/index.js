@@ -45,14 +45,24 @@ class MenuValidator extends Validator {
     }
   }
 
+  static validateFormat(input) {
+    const regex = /^[가-힣]+-[1-9]\d*$/;
+    Parser.splitMenu(input).forEach((menu) => {
+      if (!regex.test(menu)) {
+        throw new ValidationError(ERROR.invalidMenu);
+      }
+    });
+  }
+
   static validateMenus(answer) {
-    const menus = Parser.splitMenu(answer);
+    const menus = Parser.parseMenu(answer);
 
     this.validateDuplication(menus);
     this.validateMaxCount(menus);
     this.validatePurchaseCount(menus);
     this.validateIncludesMenu(menus);
     this.validateMenuTypes(menus);
+    this.validateFormat(answer);
   }
 }
 
