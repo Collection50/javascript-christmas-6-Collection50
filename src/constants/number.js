@@ -5,6 +5,8 @@ export const MENU = {
 };
 
 export const DATE = {
+  first: 1,
+  last: 31,
   christmas: 25,
   sunday: 0,
   friday: 5,
