@@ -1,7 +1,7 @@
 import Validator from '../index.js';
 import Parser from '../../Parser/index.js';
 import ValidationError from '../ValidationError/index.js';
-import { ERROR, MENU } from '../../../constants/index.js';
+import { ERROR, MENUS, MENU } from '../../../constants/index.js';
 
 class MenuValidator extends Validator {
   static validateDuplication(menus) {
@@ -26,12 +26,23 @@ class MenuValidator extends Validator {
     });
   }
 
+  static validateIncludesMenu(menus) {
+    const sellingMenus = Object.keys(MENUS);
+
+    menus.forEach(({ menu }) => {
+      if (!sellingMenus.includes(menu)) {
+        throw new ValidationError(ERROR.invalidMenu);
+      }
+    });
+  }
+
   static validateMenus(answer) {
     const menus = Parser.splitMenu(answer);
 
     this.validateDuplication(menus);
     this.validateMaxCount(menus);
     this.validatePurchaseCount(menus);
+    this.validateIncludesMenu(menus);
   }
 }
 
