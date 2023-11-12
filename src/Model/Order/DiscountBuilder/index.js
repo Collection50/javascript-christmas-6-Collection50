@@ -1,6 +1,9 @@
 import Christmas from '../Discount/Christmas/index.js';
 import Special from '../Discount/Special/index.js';
+import Weekend from '../Discount/Weekend/index.js';
 import Day from '../../Day/index.js';
+import { DAY_TYPE } from '../../../constants/index.js';
+import Main from '../../Menu/Main/index.js';
 
 class DiscountBuilder {
   #discounts;
@@ -22,6 +25,15 @@ class DiscountBuilder {
   special() {
     if (this.#day.isSpecialDay()) {
       this.#discounts.push(new Special());
+    }
+    return this;
+  }
+
+  weekend(menus) {
+    const daytype = this.#day.parseDayType();
+    const hasMain = menus.some((menu) => menu instanceof Main);
+    if (daytype === DAY_TYPE.weekend && hasMain) {
+      this.#discounts.push(new Weekend(menus));
     }
     return this;
   }
