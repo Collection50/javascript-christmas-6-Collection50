@@ -1,6 +1,12 @@
 export const MENU = {
   maxCount: 20,
   minimumOrder: 10_000,
+  champagnePresentation: 120_000,
+};
+
+export const PRICE = {
+  minimumOrder: 10_000,
+  champagnePresentation: 120_000,
 };
 
 export const DATE = {
@@ -10,17 +16,18 @@ export const DATE = {
   sunday: 0,
   friday: 5,
   saturday: 6,
-  weekday: 'weekday',
-  weekend: 'weekend',
 };
 
 export const DISCOUNT = {
   main: 2_023,
-  dessert: 2023,
+  dessert: 2_023,
   special: 1_000,
   christmasDefault: 1000,
   christmasDday: 100,
-  champagnePresentation: 120_000,
+};
+
+export const PRESENTATION_TYPE = {
+  champagne: { name: '샴페인', count: 1 },
 };
 
 export const BADGE = {
