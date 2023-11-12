@@ -1,19 +1,29 @@
-import { SYMBOLS } from '../../constants/index.js';
+import {
+  SYMBOLS,
+  MAIN,
+  APPETIZER,
+  DESSERT,
+  MENU_TYPE,
+} from '../../constants/index.js';
 
 class Parser {
-  static parseNumber(input) {
-    return Number(input);
-  }
-
-  static splitMenu(input) {
-    return input.split(SYMBOLS.menuDivider);
-  }
-
   static parseMenu(input) {
-    return this.splitMenu(input).map((menus) => {
+    return input.split(SYMBOLS.menuDivider).map((menus) => {
       const [menu, count] = menus.split(SYMBOLS.hyphen);
       return { menu, count: Number(count) };
     });
+  }
+
+  static parseMenuType(name) {
+    if (Object.keys(MAIN).includes(name)) {
+      return MENU_TYPE.main;
+    }
+    if (Object.keys(APPETIZER).includes(name)) {
+      return MENU_TYPE.appetizer;
+    }
+    return Object.keys(DESSERT).includes(name)
+      ? MENU_TYPE.dessert
+      : MENU_TYPE.beverage;
   }
 }
 
