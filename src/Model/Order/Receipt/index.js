@@ -1,3 +1,8 @@
+import {
+  DISCOUNT_MESSAGE,
+  PRESENTATION_TYPE,
+} from '../../../constants/index.js';
+import Presentation from '../Discount/Presentation/index.js';
 import DiscountBuilder from '../DiscountBuilder/index.js';
 
 class Receipt {
@@ -25,6 +30,12 @@ class Receipt {
       (acc, discount) => acc + discount.calculateDiscountAmount(),
       0,
     );
+  }
+
+  presentation() {
+    return this.#discounts.some((discount) => discount instanceof Presentation)
+      ? `${PRESENTATION_TYPE.champagne.name} ${PRESENTATION_TYPE.champagne.count}개`
+      : DISCOUNT_MESSAGE.none;
   }
 }
 
