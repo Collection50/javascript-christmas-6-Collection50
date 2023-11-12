@@ -1,5 +1,6 @@
 import {
   DISCOUNT_MESSAGE,
+  SYMBOLS,
   PRESENTATION_TYPE,
 } from '../../../constants/index.js';
 import Presentation from '../Discount/Presentation/index.js';
@@ -36,6 +37,15 @@ class Receipt {
     return this.#discounts.some((discount) => discount instanceof Presentation)
       ? `${PRESENTATION_TYPE.champagne.name} ${PRESENTATION_TYPE.champagne.count}개`
       : DISCOUNT_MESSAGE.none;
+  }
+
+  discountHistory() {
+    if (!this.#discounts.length) {
+      return DISCOUNT_MESSAGE.none;
+    }
+    return this.#discounts
+      .map((discount) => discount.toString())
+      .join(SYMBOLS.lineBreak);
   }
 }
 
