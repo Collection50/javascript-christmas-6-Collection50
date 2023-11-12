@@ -1,5 +1,6 @@
 import {
   DISCOUNT_MESSAGE,
+  MENU,
   SYMBOLS,
   PRESENTATION_TYPE,
 } from '../../../constants/index.js';
@@ -46,6 +47,20 @@ class Receipt {
     return this.#discounts
       .map((discount) => discount.toString())
       .join(SYMBOLS.lineBreak);
+  }
+
+  payment(menus) {
+    const totalPrice = this.totalPrice(menus);
+    const totalDiscount = this.totalDiscount();
+    const paymentAmount = totalPrice - totalDiscount;
+    const menuIncludesChampagne = menus.some(
+      (menu) => menu.name() === PRESENTATION_TYPE.champagne.name,
+    );
+
+    if (totalPrice < MENU.champagnePresentation) {
+      return paymentAmount;
+    }
+    return menuIncludesChampagne ? paymentAmount : paymentAmount + 25_000;
   }
 }
 
