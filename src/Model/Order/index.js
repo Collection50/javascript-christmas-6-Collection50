@@ -15,6 +15,8 @@ const MENU_INSTANCES = {
 class Order {
   #menus;
 
+  #receipt;
+
   constructor(menus) {
     this.#menus = this.addMenus(menus);
   }
@@ -26,6 +28,10 @@ class Order {
       const menuInstance = MENU_INSTANCES[type];
       return menuInstance(name, count);
     });
+  }
+
+  showMenus() {
+    return this.#menus.map((menu) => menu.toString()).join(SYMBOLS.lineBreak);
   }
 }
 
