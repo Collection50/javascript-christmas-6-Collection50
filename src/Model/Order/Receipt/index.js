@@ -1,4 +1,5 @@
 import {
+  BADGE,
   DISCOUNT_MESSAGE,
   MENU,
   SYMBOLS,
@@ -61,6 +62,20 @@ class Receipt {
       return paymentAmount;
     }
     return menuIncludesChampagne ? paymentAmount : paymentAmount + 25_000;
+  }
+
+  badge() {
+    const totalDiscount = this.totalDiscount();
+
+    if (totalDiscount >= BADGE.santa.price) {
+      return BADGE.santa.name;
+    }
+    if (totalDiscount >= BADGE.tree.price) {
+      return BADGE.tree.name;
+    }
+    return totalDiscount >= BADGE.star.price
+      ? BADGE.star.name
+      : DISCOUNT_MESSAGE.none;
   }
 }
 
