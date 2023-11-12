@@ -21,6 +21,10 @@ class Day {
     }
     return DATE.weekday;
   }
+
+  isAfterChristmas() {
+    return this.#day > DATE.christmas;
+  }
 }
 
 export default Day;
