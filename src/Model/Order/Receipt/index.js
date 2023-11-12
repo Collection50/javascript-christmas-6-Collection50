@@ -19,6 +19,13 @@ class Receipt {
   totalPrice(menus) {
     return menus.reduce((total, menu) => total + menu.price(), 0);
   }
+
+  totalDiscount() {
+    return this.#discounts.reduce(
+      (acc, discount) => acc + discount.calculateDiscountAmount(),
+      0,
+    );
+  }
 }
 
 export default Receipt;
