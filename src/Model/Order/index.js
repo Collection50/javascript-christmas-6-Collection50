@@ -4,7 +4,7 @@ import Main from '../Menu/Main/index.js';
 import Appetizer from '../Menu/Appetizer/index.js';
 import Dessert from '../Menu/Dessert/index.js';
 import Beverage from '../Menu/Beverage/index.js';
-import { LANG, SYMBOLS } from '../../constants/index.js';
+import { LANG, PRICE, SYMBOLS } from '../../constants/index.js';
 
 const MENU_INSTANCES = {
   main: (name, count) => new Main(name, count),
@@ -48,6 +48,15 @@ class Order {
 
   showDiscountHistory() {
     return this.#receipt.discountHistory();
+  }
+
+  showTotalDiscount() {
+    const totalDiscount = Number(this.#receipt.totalDiscount() * -1);
+
+    if (totalDiscount === PRICE.zero) {
+      return `${PRICE.zero}원`;
+    }
+    return `${totalDiscount.toLocaleString(LANG.korea)}원`;
   }
 }
 

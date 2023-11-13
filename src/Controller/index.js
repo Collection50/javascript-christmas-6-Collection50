@@ -59,6 +59,13 @@ class EventPlanner {
 
     this.showTotalDiscount();
   }
+
+  showTotalDiscount() {
+    const totalDiscount = this.#order.showTotalDiscount();
+    OutputView.showDetail(MENU_MESSAGE.discountPrice, totalDiscount);
+
+    this.showPaymentAmount();
+  }
 }
 
 export default EventPlanner;
