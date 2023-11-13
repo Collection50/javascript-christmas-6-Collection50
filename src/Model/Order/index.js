@@ -62,6 +62,10 @@ class Order {
   showTotalPaymentAmount() {
     return `${this.#receipt.payment(this.#menus).toLocaleString(LANG.korea)}원`;
   }
+
+  showBadge() {
+    return this.#receipt.badge();
+  }
 }
 
 export default Order;

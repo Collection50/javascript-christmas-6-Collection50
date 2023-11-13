@@ -73,6 +73,11 @@ class EventPlanner {
 
     this.showBadge();
   }
+
+  showBadge() {
+    const badge = this.#order.showBadge();
+    OutputView.showDetail(MENU_MESSAGE.badge, badge);
+  }
 }
 
 export default EventPlanner;
