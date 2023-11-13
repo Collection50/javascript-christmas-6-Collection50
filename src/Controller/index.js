@@ -66,6 +66,13 @@ class EventPlanner {
 
     this.showPaymentAmount();
   }
+
+  showTotalPaymentAmount() {
+    const paymentAmount = this.#order.showTotalPaymentAmount();
+    OutputView.showDetail(MENU_MESSAGE.priceAfterDiscount, paymentAmount);
+
+    this.showBadge();
+  }
 }
 
 export default EventPlanner;

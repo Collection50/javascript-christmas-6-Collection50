@@ -58,6 +58,10 @@ class Order {
     }
     return `${totalDiscount.toLocaleString(LANG.korea)}원`;
   }
+
+  showTotalPaymentAmount() {
+    return `${this.#receipt.payment(this.#menus).toLocaleString(LANG.korea)}원`;
+  }
 }
 
 export default Order;
