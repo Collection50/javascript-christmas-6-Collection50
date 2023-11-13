@@ -38,6 +38,13 @@ class EventPlanner {
 
     this.showTotalPrice();
   }
+
+  showTotalPrice() {
+    const totalPrice = this.#order.showTotalPrice();
+    OutputView.showDetail(MENU_MESSAGE.priceBeforeDiscount, totalPrice);
+
+    this.showPresentation();
+  }
 }
 
 export default EventPlanner;
