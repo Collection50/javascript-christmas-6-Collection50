@@ -52,6 +52,13 @@ class EventPlanner {
 
     this.showDiscountHistory();
   }
+
+  showDiscountHistory() {
+    const discountHistory = this.#order.showDiscountHistory();
+    OutputView.showDetail(MENU_MESSAGE.benefits, discountHistory);
+
+    this.showTotalDiscount();
+  }
 }
 
 export default EventPlanner;

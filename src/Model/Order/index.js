@@ -45,6 +45,10 @@ class Order {
   showPresentation() {
     return this.#receipt.presentation();
   }
+
+  showDiscountHistory() {
+    return this.#receipt.discountHistory();
+  }
 }
 
 export default Order;
