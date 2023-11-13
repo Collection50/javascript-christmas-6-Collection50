@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { PLANNER_MESSAGE } from '../constants/index.js';
+import { PLANNER_MESSAGE, SYMBOLS } from '../constants/index.js';
 
 const OutputView = {
   log(string) {
@@ -12,6 +12,13 @@ const OutputView = {
 
   preview(day) {
     Console.print(`12월 ${day}일에 ${PLANNER_MESSAGE.preview}`);
+  },
+
+  showDetail(title, content) {
+    Console.print(
+      `${SYMBOLS.lineBreak}${SYMBOLS.openChevron}${title}${SYMBOLS.closeChevron}`,
+    );
+    Console.print(`${content}`);
   },
 };
 
