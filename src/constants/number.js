@@ -5,6 +5,7 @@ export const MENU = {
 };
 
 export const PRICE = {
+  zero: 0,
   minimumOrder: 10_000,
   champagnePresentation: 120_000,
 };

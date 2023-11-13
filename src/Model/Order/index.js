@@ -1,3 +1,4 @@
+import Receipt from './Receipt/index.js';
 import Parser from '../Parser/index.js';
 import Main from '../Menu/Main/index.js';
 import Appetizer from '../Menu/Appetizer/index.js';
@@ -17,8 +18,9 @@ class Order {
 
   #receipt;
 
-  constructor(menus) {
+  constructor(menus, day) {
     this.#menus = this.addMenus(menus);
+    this.#receipt = new Receipt(day, this.#menus);
   }
 
   addMenus(menus) {

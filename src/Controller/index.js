@@ -1,5 +1,5 @@
 import Order from '../Model/Order/index.js';
-import { PLANNER_MESSAGE } from '../constants/index.js';
+import { PLANNER_MESSAGE, MENU_MESSAGE } from '../constants/index.js';
 import { InputView, OutputView } from '../View/index.js';
 import MenuValidator from '../Model/Validator/MenuValidator/index.js';
 import DateValidator from '../Model/Validator/DateValidator/index.js';
@@ -30,6 +30,13 @@ class EventPlanner {
     );
     this.#order = new Order(menus, day);
     this.showMenus();
+  }
+
+  showMenus() {
+    const menus = this.#order.showMenus();
+    OutputView.showDetail(MENU_MESSAGE.menu, menus);
+
+    this.showTotalPrice();
   }
 }
 
