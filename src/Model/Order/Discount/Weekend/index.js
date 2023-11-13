@@ -5,19 +5,16 @@ import { DISCOUNT_MESSAGE, DISCOUNT } from '../../../../constants/index.js';
 class Weekend extends Discount {
   #discount;
 
-  #menus;
-
   constructor(menus) {
     super();
-    this.#menus = menus;
-    this.#discount = this.calculateDiscountAmount();
+    this.#discount = this.calculateDiscountAmount(menus);
   }
 
-  calculateDiscountAmount() {
-    const dissertCount = this.#menus.filter(
-      (menu) => menu instanceof Main,
-    ).length;
-    return dissertCount * DISCOUNT.dessert;
+  calculateDiscountAmount(menus) {
+    const menuCount = menus
+      .filter((menu) => menu instanceof Main)
+      .reduce((count, menu) => count + menu.count(), 0);
+    return menuCount * DISCOUNT.dessert;
   }
 
   toString() {

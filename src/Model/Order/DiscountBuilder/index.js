@@ -26,7 +26,7 @@ class DiscountBuilder {
   }
 
   special() {
-    if (this.#day.isSpecialDay()) {
+    if (this.#day.isSpecial()) {
       this.#discounts.push(new Special());
     }
     return this;

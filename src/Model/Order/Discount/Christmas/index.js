@@ -4,16 +4,13 @@ import Discount from '../index.js';
 class Christmas extends Discount {
   #discount;
 
-  #day;
-
   constructor(day) {
     super();
-    this.#day = day;
-    this.#discount = this.calculateDiscountAmount();
+    this.#discount = this.calculateDiscountAmount(day);
   }
 
-  calculateDiscountAmount() {
-    const discountAmount = (this.#day - 1) * DISCOUNT.christmasDday;
+  calculateDiscountAmount(day) {
+    const discountAmount = (day - 1) * DISCOUNT.christmasDday;
     return discountAmount + DISCOUNT.christmasDefault;
   }
 
