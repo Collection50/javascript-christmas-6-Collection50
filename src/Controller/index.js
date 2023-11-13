@@ -45,6 +45,13 @@ class EventPlanner {
 
     this.showPresentation();
   }
+
+  showPresentation() {
+    const presentation = this.#order.showPresentation();
+    OutputView.showDetail(MENU_MESSAGE.presentation, presentation);
+
+    this.showDiscountHistory();
+  }
 }
 
 export default EventPlanner;

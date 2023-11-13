@@ -41,6 +41,10 @@ class Order {
       .totalPrice(this.#menus)
       .toLocaleString(LANG.korea)}원`;
   }
+
+  showPresentation() {
+    return this.#receipt.presentation();
+  }
 }
 
 export default Order;
