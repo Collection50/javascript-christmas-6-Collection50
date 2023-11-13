@@ -1,7 +1,13 @@
 import Validator from '../index.js';
 import Parser from '../../Parser/index.js';
 import ValidationError from '../ValidationError/index.js';
-import { ERROR, BEVERAGE, MENUS, MENU } from '../../../constants/index.js';
+import {
+  ERROR,
+  BEVERAGE,
+  MENUS,
+  MENU,
+  SYMBOLS,
+} from '../../../constants/index.js';
 
 class MenuValidator extends Validator {
   static validateDuplication(menus) {
@@ -47,7 +53,8 @@ class MenuValidator extends Validator {
 
   static validateFormat(input) {
     const regex = /^[가-힣]+-[1-9]\d*$/;
-    Parser.splitMenu(input).forEach((menu) => {
+
+    input.split(SYMBOLS.menuDivider).forEach((menu) => {
       if (!regex.test(menu)) {
         throw new ValidationError(ERROR.invalidMenu);
       }
