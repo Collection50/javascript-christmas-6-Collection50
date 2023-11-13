@@ -3,11 +3,9 @@ import Dessert from '../../../Menu/Dessert/index.js';
 import { DISCOUNT_MESSAGE, DISCOUNT } from '../../../../constants/index.js';
 
 class Weekday extends Discount {
-  #discount;
-
   constructor(menus) {
     super();
-    this.#discount = this.calculateDiscountAmount(menus);
+    this._discount = this.calculateDiscountAmount(menus);
   }
 
   calculateDiscountAmount(menus) {
@@ -18,7 +16,7 @@ class Weekday extends Discount {
   }
 
   toString() {
-    return super.toString(DISCOUNT_MESSAGE.weekday, this.#discount);
+    return super.toString(DISCOUNT_MESSAGE.weekday, this._discount);
   }
 }
 

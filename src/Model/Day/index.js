@@ -1,4 +1,4 @@
-import { DATE } from '../../constants/index.js';
+import { DATE, DAY_TYPE } from '../../constants/index.js';
 
 class Day {
   #day;
@@ -10,16 +10,16 @@ class Day {
     this.#date = new Date(`2023-12-${day}`);
   }
 
-  isSpecialDay() {
+  isSpecial() {
     return this.#day === DATE.christmas || this.#date.getDay() === DATE.sunday;
   }
 
   parseDayType() {
     const day = this.#date.getDay();
     if (day === DATE.friday || day === DATE.saturday) {
-      return DATE.weekend;
+      return DAY_TYPE.weekend;
     }
-    return DATE.weekday;
+    return DAY_TYPE.weekday;
   }
 
   isAfterChristmas() {

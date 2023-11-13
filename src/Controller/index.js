@@ -64,7 +64,7 @@ class EventPlanner {
     const totalDiscount = this.#order.showTotalDiscount();
     OutputView.showDetail(MENU_MESSAGE.discountPrice, totalDiscount);
 
-    this.showPaymentAmount();
+    this.showTotalPaymentAmount();
   }
 
   showTotalPaymentAmount() {

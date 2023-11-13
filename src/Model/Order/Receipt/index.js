@@ -30,7 +30,7 @@ class Receipt {
 
   totalDiscount() {
     return this.#discounts.reduce(
-      (acc, discount) => acc + discount.calculateDiscountAmount(),
+      (acc, discount) => acc + discount.amount(),
       0,
     );
   }

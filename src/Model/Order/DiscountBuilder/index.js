@@ -44,7 +44,7 @@ class DiscountBuilder {
   weekday(menus) {
     const daytype = this.#day.parseDayType();
     const hasDessert = menus.some((menu) => menu instanceof Dessert);
-    if (daytype === DAY_TYPE.weekend && hasDessert) {
+    if (daytype === DAY_TYPE.weekday && hasDessert) {
       this.#discounts.push(new Weekday(menus));
     }
     return this;

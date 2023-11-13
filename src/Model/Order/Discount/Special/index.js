@@ -2,11 +2,9 @@ import { DISCOUNT_MESSAGE, DISCOUNT } from '../../../../constants/index.js';
 import Discount from '../index.js';
 
 class Special extends Discount {
-  #discount;
-
   constructor() {
     super();
-    this.#discount = this.calculateDiscountAmount();
+    this._discount = this.calculateDiscountAmount();
   }
 
   calculateDiscountAmount() {
@@ -14,7 +12,7 @@ class Special extends Discount {
   }
 
   toString() {
-    return super.toString(DISCOUNT_MESSAGE.special, this.#discount);
+    return super.toString(DISCOUNT_MESSAGE.special, this._discount);
   }
 }
 
