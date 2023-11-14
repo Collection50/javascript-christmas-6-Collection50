@@ -16,10 +16,9 @@ class Day {
 
   parseDayType() {
     const day = this.#date.getDay();
-    if (day === DATE.friday || day === DATE.saturday) {
-      return DAY_TYPE.weekend;
-    }
-    return DAY_TYPE.weekday;
+    return day === DATE.friday || day === DATE.saturday
+      ? DAY_TYPE.weekend
+      : DAY_TYPE.weekday;
   }
 
   isAfterChristmas() {

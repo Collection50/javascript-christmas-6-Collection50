@@ -4,7 +4,7 @@ import Weekend from '../Discount/Weekend/index.js';
 import Weekday from '../Discount/Weekday/index.js';
 import Presentation from '../Discount/Presentation/index.js';
 import Day from '../../Day/index.js';
-import { DAY_TYPE, MENU, PRICE } from '../../../constants/index.js';
+import { DAY_TYPE, MENU } from '../../../constants/index.js';
 import Dessert from '../../Menu/Dessert/index.js';
 import Main from '../../Menu/Main/index.js';
 
@@ -57,8 +57,8 @@ class DiscountBuilder {
     return this;
   }
 
-  build(total) {
-    return total < PRICE.minimumOrder ? [] : this.#discounts;
+  build() {
+    return this.#discounts;
   }
 }
 

@@ -4,6 +4,7 @@ import {
   MENU,
   SYMBOLS,
   PRESENTATION_TYPE,
+  PRICE,
 } from '../../../constants/index.js';
 import Presentation from '../Discount/Presentation/index.js';
 import DiscountBuilder from '../DiscountBuilder/index.js';
@@ -15,13 +16,20 @@ class Receipt {
 
   constructor(day, menus) {
     this.#total = this.totalPrice(menus);
-    this.#discounts = new DiscountBuilder(day)
+    this.#discounts = this.addDiscountBuilder(day, menus, this.#total);
+  }
+
+  addDiscountBuilder(day, menus, total) {
+    if (total < PRICE.minimumOrder) {
+      return [];
+    }
+    return new DiscountBuilder(day)
       .christmas(day)
       .special()
       .weekend(menus)
       .weekday(menus)
-      .presentation(this.#total)
-      .build(this.#total);
+      .presentation(total)
+      .build();
   }
 
   totalPrice(menus) {
