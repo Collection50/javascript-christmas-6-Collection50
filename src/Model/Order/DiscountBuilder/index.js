@@ -4,9 +4,9 @@ import Weekend from '../Discount/Weekend/index.js';
 import Weekday from '../Discount/Weekday/index.js';
 import Presentation from '../Discount/Presentation/index.js';
 import Day from '../../Day/index.js';
-import { DAY_TYPE, MENU } from '../../../constants/index.js';
 import Dessert from '../../Menu/Dessert/index.js';
 import Main from '../../Menu/Main/index.js';
+import { DAY_TYPE, PRICE } from '../../../constants/index.js';
 
 class DiscountBuilder {
   #discounts;
@@ -50,8 +50,8 @@ class DiscountBuilder {
     return this;
   }
 
-  presentation(total) {
-    if (total >= MENU.champagnePresentation) {
+  presentation(totalPrice) {
+    if (totalPrice >= PRICE.presentation) {
       this.#discounts.push(new Presentation());
     }
     return this;

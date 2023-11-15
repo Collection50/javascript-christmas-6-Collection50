@@ -1,13 +1,12 @@
 export const MENU = {
   maxCount: 20,
   minimumOrder: 10_000,
-  champagnePresentation: 120_000,
 };
 
 export const PRICE = {
   zero: 0,
   minimumOrder: 10_000,
-  champagnePresentation: 120_000,
+  presentation: 120_000,
 };
 
 export const DATE = {
