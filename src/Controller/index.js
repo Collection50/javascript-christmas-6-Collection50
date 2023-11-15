@@ -21,6 +21,7 @@ class EventPlanner {
       PLANNER_MESSAGE.askVisitDay,
       (answer) => DateValidator.validateVisitDay(answer),
     );
+
     await this.askMenus(day);
   }
 
@@ -31,46 +32,28 @@ class EventPlanner {
     this.#order = new Order(menus, day);
     OutputView.preview(day);
 
-    this.showMenus();
+    this.showOrder();
   }
 
-  showMenus() {
-    const menus = this.#order.showMenus();
+  showOrder() {
+    const menus = this.#order.formatMenus();
+    const totalPrice = this.#order.sumTotalPrice();
+
     OutputView.showDetail(MENU_MESSAGE.menu, menus);
-
-    this.showTotalPrice();
-  }
-
-  showTotalPrice() {
-    const totalPrice = this.#order.showTotalPrice();
     OutputView.showDetail(MENU_MESSAGE.priceBeforeDiscount, totalPrice);
 
-    this.showPresentation();
+    this.showOrderHistory();
   }
 
-  showPresentation() {
-    const presentation = this.#order.showPresentation();
+  showOrderHistory() {
+    const presentation = this.#order.getPresentation();
+    const discountHistory = this.#order.history();
+    const totalDiscount = this.#order.sumTotalDiscount();
+    const paymentAmount = this.#order.calculatePaymentAmount();
+
     OutputView.showDetail(MENU_MESSAGE.presentation, presentation);
-
-    this.showDiscountHistory();
-  }
-
-  showDiscountHistory() {
-    const discountHistory = this.#order.showDiscountHistory();
     OutputView.showDetail(MENU_MESSAGE.benefits, discountHistory);
-
-    this.showTotalDiscount();
-  }
-
-  showTotalDiscount() {
-    const totalDiscount = this.#order.showTotalDiscount();
     OutputView.showDetail(MENU_MESSAGE.discountPrice, totalDiscount);
-
-    this.showTotalPaymentAmount();
-  }
-
-  showTotalPaymentAmount() {
-    const paymentAmount = this.#order.showTotalPaymentAmount();
     OutputView.showDetail(MENU_MESSAGE.priceAfterDiscount, paymentAmount);
 
     this.showBadge();

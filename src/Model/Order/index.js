@@ -32,25 +32,25 @@ class Order {
     });
   }
 
-  showMenus() {
+  formatMenus() {
     return this.#menus.map((menu) => menu.toString()).join(SYMBOLS.lineBreak);
   }
 
-  showTotalPrice() {
+  sumTotalPrice() {
     return `${this.#receipt
       .totalPrice(this.#menus)
       .toLocaleString(LANG.korea)}원`;
   }
 
-  showPresentation() {
+  getPresentation() {
     return this.#receipt.presentation();
   }
 
-  showDiscountHistory() {
+  history() {
     return this.#receipt.discountHistory();
   }
 
-  showTotalDiscount() {
+  sumTotalDiscount() {
     const totalDiscount = Number(this.#receipt.totalDiscount() * -1);
 
     if (totalDiscount === PRICE.zero) {
@@ -59,7 +59,7 @@ class Order {
     return `${totalDiscount.toLocaleString(LANG.korea)}원`;
   }
 
-  showTotalPaymentAmount() {
+  calculatePaymentAmount() {
     return `${this.#receipt.payment(this.#menus).toLocaleString(LANG.korea)}원`;
   }
 
