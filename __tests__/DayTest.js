@@ -26,7 +26,7 @@ describe('Day 클래스 테스트', () => {
     });
   });
 
-  test('주중(일-목)인 경우 "weekday"를 반환한다.', () => {
+  test('평일(일-목)인 경우 "weekday"를 반환한다.', () => {
     const WEEKDAY = 'weekday';
     const MONDAY = 11;
     const TUESDAY = 12;

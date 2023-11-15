@@ -1,4 +1,5 @@
 import Day from '../src/Model/Day/index.js';
+import Appetizer from '../src/Model/Menu/Appetizer/index.js';
 import Dessert from '../src/Model/Menu/Dessert/index.js';
 import Main from '../src/Model/Menu/Main/index.js';
 import Christmas from '../src/Model/Order/Discount/Christmas/index.js';
@@ -84,7 +85,21 @@ describe('날짜, 금액을 조합하여 할인 객체를 생성한다', () => {
     });
   });
 
-  it('일~목요일이면서 디저트 메뉴가 포함된 경우 주중 이벤트를 포함한다', () => {
+  it('금/토요일이면서 메인 메뉴가 포함되지 않은 경우 경우 주말 이벤트를 포함하지 않는다', () => {
+    const weekends = [8, 9, 15, 16];
+    const menus = [new Appetizer('시저샐러드', 1)];
+
+    mockDayInstance.parseDayType.mockReturnValue('weekend');
+
+    weekends.forEach((weekend) => {
+      const discounts = new DiscountBuilder(weekend).weekend(menus).build();
+
+      expect(discounts).toHaveLength(0);
+      expect(discounts).toBeInstanceOf(Array);
+    });
+  });
+
+  it('일~목요일이면서 디저트 메뉴가 포함된 경우 평일 이벤트를 포함한다', () => {
     const weekdays = [4, 5, 6, 7];
     const menus = [new Dessert('초코케이크', 1)];
 
@@ -95,6 +110,20 @@ describe('날짜, 금액을 조합하여 할인 객체를 생성한다', () => {
 
       expect(discounts).toHaveLength(1);
       expect(discounts[0]).toBeInstanceOf(Weekday);
+    });
+  });
+
+  it('일~목요일이면서 디저트 메뉴가 포함되지 않은 경우 평일 이벤트를 포함하지 않는다', () => {
+    const weekdays = [4, 5, 6, 7];
+    const menus = [new Main('티본스테이크', 1)];
+
+    mockDayInstance.parseDayType.mockReturnValue('weekday');
+
+    weekdays.forEach((weekday) => {
+      const discounts = new DiscountBuilder(weekday).weekday(menus).build();
+
+      expect(discounts).toHaveLength(0);
+      expect(discounts).toBeInstanceOf(Array);
     });
   });
 
