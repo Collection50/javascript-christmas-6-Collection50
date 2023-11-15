@@ -1,4 +1,4 @@
-import { BADGE, DISCOUNT_MESSAGE } from '../../../../constants/index.js';
+import { BADGE } from '../../../../constants/index.js';
 
 class Badge {
   #discountAmount;
@@ -8,15 +8,10 @@ class Badge {
   }
 
   tag() {
-    if (this.#discountAmount >= BADGE.santa.price) {
-      return BADGE.santa.name;
-    }
-    if (this.#discountAmount >= BADGE.tree.price) {
-      return BADGE.tree.name;
-    }
-    return this.#discountAmount >= BADGE.star.price
-      ? BADGE.star.name
-      : DISCOUNT_MESSAGE.none;
+    const badge = Object.values(BADGE).find(
+      ({ price }) => price <= this.#discountAmount,
+    )?.name;
+    return badge ?? BADGE.none;
   }
 }
 

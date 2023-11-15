@@ -27,11 +27,12 @@ export const DISCOUNT = {
 };
 
 export const PRESENTATION_TYPE = {
-  champagne: { name: '샴페인', count: 1 },
+  champagne: { name: '샴페인', count: 1, price: 25_000 },
 };
 
 export const BADGE = {
   santa: { name: '산타', price: 20_000 },
   tree: { name: '트리', price: 10_000 },
   star: { name: '별', price: 5_000 },
+  none: '없음',
 };

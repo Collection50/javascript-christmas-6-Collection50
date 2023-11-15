@@ -1,4 +1,7 @@
-import { DISCOUNT_MESSAGE, PRESENTATION } from '../../../../constants/index.js';
+import {
+  DISCOUNT_MESSAGE,
+  PRESENTATION_TYPE,
+} from '../../../../constants/index.js';
 import Discount from '../index.js';
 
 class Presentation extends Discount {
@@ -8,7 +11,7 @@ class Presentation extends Discount {
   }
 
   calculateDiscountAmount() {
-    return PRESENTATION.샴페인;
+    return PRESENTATION_TYPE.champagne.price;
   }
 
   toString() {
