@@ -3,7 +3,6 @@ import {
   SYMBOLS,
   PRESENTATION_TYPE,
   PRICE,
-  PRESENTATION,
 } from '../../../constants/index.js';
 import Presentation from '../Discount/Presentation/index.js';
 import DiscountBuilder from '../DiscountBuilder/index.js';
@@ -62,12 +61,10 @@ class Receipt {
   }
 
   payment(menus) {
-    const totalPrice = this.totalPrice(menus);
-    const paymentAmount = totalPrice - this.totalDiscount();
-    if (totalPrice < PRICE.presentation) {
-      return paymentAmount;
-    }
-    return paymentAmount + PRESENTATION.샴페인;
+    const totalDiscountWithoutPresentation = this.#discounts
+      .filter((discount) => !(discount instanceof Presentation))
+      .reduce((acc, discount) => acc + discount.amount(), 0);
+    return this.totalPrice(menus) - totalDiscountWithoutPresentation;
   }
 
   badge() {
