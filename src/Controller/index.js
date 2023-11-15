@@ -29,7 +29,7 @@ class EventPlanner {
       MenuValidator.validateMenus(answer),
     );
     this.#order = new Order(menus, day);
-    // OutputView.preview(day);
+    OutputView.preview(day);
 
     this.showMenus();
   }
