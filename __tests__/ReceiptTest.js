@@ -296,7 +296,7 @@ describe('영수증 클래스를 테스트한다.', () => {
   });
 
   it('총할인 금액에 따라 배지를 부여한다.', () => {
-    const DAYS = [3, 26, 2];
+    const DAYS = [3, 26, 23, 2];
     const menus = [
       [
         new Main('티본스테이크', 1),
@@ -305,8 +305,8 @@ describe('영수증 클래스를 테스트한다.', () => {
         new Beverage('제로콜라', 1),
       ],
       [new Appetizer('타파스', 1), new Beverage('제로콜라', 1)],
-      [new Dessert('아이스크림', 5)],
-      [new Dessert('아이스크림', 3), new Beverage('제로콜라', 1)],
+      [new Main('크리스마스파스타', 4)],
+      [new Main('크리스마스파스타', 3)],
     ];
     const badges = ['산타', '없음', '트리', '별'];
 

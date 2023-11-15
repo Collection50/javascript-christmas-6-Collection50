@@ -18,7 +18,7 @@ class Receipt {
   constructor(day, menus) {
     this.#total = this.totalPrice(menus);
     this.#discounts = this.addDiscountBuilder(day, menus, this.#total);
-    this.#badge = new Badge(this.#total);
+    this.#badge = null;
   }
 
   addDiscountBuilder(day, menus, total) {
@@ -68,6 +68,7 @@ class Receipt {
   }
 
   badge() {
+    this.#badge = new Badge(this.totalDiscount());
     return this.#badge.tag();
   }
 }
