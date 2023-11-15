@@ -1,22 +1,25 @@
 import {
-  BADGE,
   DISCOUNT_MESSAGE,
-  MENU,
   SYMBOLS,
   PRESENTATION_TYPE,
   PRICE,
+  PRESENTATION,
 } from '../../../constants/index.js';
 import Presentation from '../Discount/Presentation/index.js';
 import DiscountBuilder from '../DiscountBuilder/index.js';
+import Badge from './Badge/index.js';
 
 class Receipt {
   #discounts;
 
   #total;
 
+  #badge;
+
   constructor(day, menus) {
     this.#total = this.totalPrice(menus);
     this.#discounts = this.addDiscountBuilder(day, menus, this.#total);
+    this.#badge = new Badge(this.#total);
   }
 
   addDiscountBuilder(day, menus, total) {
@@ -60,30 +63,15 @@ class Receipt {
 
   payment(menus) {
     const totalPrice = this.totalPrice(menus);
-    const totalDiscount = this.totalDiscount();
-    const paymentAmount = totalPrice - totalDiscount;
-    const menuIncludesChampagne = menus.some(
-      (menu) => menu.name() === PRESENTATION_TYPE.champagne.name,
-    );
-
-    if (totalPrice < MENU.champagnePresentation) {
+    const paymentAmount = totalPrice - this.totalDiscount();
+    if (totalPrice < PRICE.presentation) {
       return paymentAmount;
     }
-    return menuIncludesChampagne ? paymentAmount : paymentAmount + 25_000;
+    return paymentAmount + PRESENTATION.샴페인;
   }
 
   badge() {
-    const totalDiscount = this.totalDiscount();
-
-    if (totalDiscount >= BADGE.santa.price) {
-      return BADGE.santa.name;
-    }
-    if (totalDiscount >= BADGE.tree.price) {
-      return BADGE.tree.name;
-    }
-    return totalDiscount >= BADGE.star.price
-      ? BADGE.star.name
-      : DISCOUNT_MESSAGE.none;
+    return this.#badge.tag();
   }
 }
 
