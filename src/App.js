@@ -1,5 +1,13 @@
+import EventPlanner from './Controller/index.js';
+
 class App {
-  async run() {}
+  constructor() {
+    this.planner = new EventPlanner();
+  }
+
+  async run() {
+    await this.planner.plan();
+  }
 }
 
 export default App;
